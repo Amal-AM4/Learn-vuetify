@@ -31,6 +31,7 @@
                                     prepend-inner-icon="mdi-key"
                                     v-model="password"
                                     label="Password"
+                                    :rules="[rules.required]"
                                     required>
                                 </v-text-field>
 
