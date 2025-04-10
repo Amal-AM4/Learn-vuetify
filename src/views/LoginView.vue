@@ -20,8 +20,9 @@
                                     variant="solo"
                                     prepend-inner-icon="mdi-email"
                                     v-model="email"
-                                    :counter="10"
+                                    :counter="50"
                                     label="Email"
+                                    :rules="[rules.required, rules.email]"
                                     required>
                                 </v-text-field>
 
@@ -70,7 +71,20 @@ const remember = ref<boolean>(false)
 
 const isLoading = ref<boolean>(false)
 
+const rules = {
+    required: (value: string) => !!value || 'Required.',
+    email: (value: string) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return pattern.test(value) || 'Invalid email.'
+    }
+}
+
 function submit() {
+    
+    if (email.value === '' || password.value === '') {
+        return
+    }
+
     isLoading.value = true
 
     setTimeout(() => {
