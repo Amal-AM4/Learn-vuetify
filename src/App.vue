@@ -1,5 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
+
+const items = ref([
+  {
+    title: "Message from A",
+    icon: "mdi-email",
+    color: "blue",
+  },
+  {
+    title: "Message from B",
+    icon: "mdi-email",
+    color: "green",
+  },
+  {
+    title: "Message from C",
+    icon: "mdi-email",
+    color: "red",
+  }
+])
 
 </script>
 
@@ -13,6 +32,28 @@ import { RouterLink, RouterView } from 'vue-router'
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
+
+        <v-menu>
+          <template v-slot:activator="{ props }">
+            <v-btn icon v-bind="props">
+              <v-badge content="6" color="red-darken-2">
+                <v-icon icon="mdi-bell" color="blue-darken-4"></v-icon>
+              </v-badge>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, index) in items"
+              :key="index"
+              :value="index"
+            >
+              <v-list-item-title>
+                <v-icon :color="item.color">{{ item.icon }}</v-icon>
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+      </v-menu>
 
         <v-btn to="/login" variant="outlined" color="pink-darken-4" size="small" text="Login"></v-btn>
 

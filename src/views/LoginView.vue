@@ -40,7 +40,7 @@
                                     hide-details
                                 ></v-checkbox>
 
-                                <v-btn color="red-darken-1" type="submit" block class="mt-2">Submit</v-btn>
+                                <v-btn color="red-darken-1" type="submit" block variant="elevated" class="mt-2">Submit</v-btn>
                             </v-form>
                         </v-sheet>
                     </v-card-item>

@@ -15,7 +15,11 @@ const app = createApp(App)
 
 const vuetify = createVuetify({
     components,
-    directives
+    directives,
+    defaults: {
+        VBtn: { variant: "outlined" },
+        VTextField: { variant: "solo" },
+    }
 })
 
 app.use(router)
