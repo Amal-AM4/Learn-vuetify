@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
+import { useTheme } from 'vuetify'
 
 const items = ref([
   {
@@ -20,6 +21,14 @@ const items = ref([
   }
 ])
 
+const darkTheme = ref<boolean>(false)
+const theme = useTheme()
+
+function changeTheme() {
+  darkTheme.value = !darkTheme.value
+  theme.global.name.value = darkTheme.value ? "dark": "light"
+}
+
 </script>
 
 <template>
@@ -32,6 +41,10 @@ const items = ref([
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
+
+        <v-btn icon @click="changeTheme">
+          <v-icon :icon="darkTheme ? 'mdi-weather-sunny': 'mdi-weather-night'"></v-icon>
+        </v-btn>
 
         <v-menu>
           <template v-slot:activator="{ props }">
@@ -55,7 +68,7 @@ const items = ref([
           </v-list>
       </v-menu>
 
-        <v-btn to="/login" variant="outlined" color="pink-darken-4" size="small" text="Login"></v-btn>
+        <v-btn to="/login" variant="outlined" size="small" text="Login"></v-btn>
 
     </v-toolbar>
 
