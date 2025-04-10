@@ -19,7 +19,10 @@ const vuetify = createVuetify({
     defaults: {
         VBtn: { variant: "outlined" },
         VTextField: { variant: "solo" },
-    }
+    },
+    theme: {
+        defaultTheme: "dark"
+    },
 })
 
 app.use(router)
